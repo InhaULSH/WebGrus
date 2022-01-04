@@ -17,7 +17,7 @@ function App() {
     <div id="grid_inColumn">
       <Suspense fallback={(<div>Loading...</div>)}>
         <NavBar />
-        <div id="grid_inRow">
+        <div>
           <Switch>
             <Route exact path="/" component={Auth(LandingPage, null)} />
             <Route exact path="/login" component={Auth(LoginPage, false)} />

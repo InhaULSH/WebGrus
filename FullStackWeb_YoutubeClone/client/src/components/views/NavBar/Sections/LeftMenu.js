@@ -7,7 +7,7 @@ function LeftMenu(props) {
   return (
     <Menu mode={props.mode} style={{ width: 256 }} mode="vertical">
     <Menu.Item key="mail">
-      <a href="/">Home</a>
+      <a href="/">Introduce</a>
     </Menu.Item>
     <SubMenu title={<span>Notifications</span>}>
     </SubMenu>
@@ -15,7 +15,7 @@ function LeftMenu(props) {
     </SubMenu>
     <SubMenu title={<span>Study Groups</span>}>
     </SubMenu>
-    <SubMenu title={<span>Contest </span>}>
+    <SubMenu title={<span>Contest Info</span>}>
     </SubMenu>
     </Menu>
   )

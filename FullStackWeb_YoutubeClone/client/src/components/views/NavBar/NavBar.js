@@ -20,7 +20,7 @@ function NavBar() {
       <div className="menu__logo">
         <a href="/">WebGrus</a>
       </div>
-      <div className="menu__container">
+      <div className="menu__container" id="grid_NavBar">
         <div className="menu_left">
           <LeftMenu mode="vertical" />
         </div>
@@ -32,7 +32,7 @@ function NavBar() {
           type="primary"
           onClick={showDrawer}
         >
-          <Icon type="align-right" />
+        <Icon type="align-right" />
         </Button>
         <Drawer
           title="Basic Drawer"

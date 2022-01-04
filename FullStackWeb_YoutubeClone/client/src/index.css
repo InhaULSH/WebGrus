@@ -22,10 +22,9 @@ body {
 .app {
   flex-direction: column;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 90vh;
 }
 
 input.error {
@@ -46,5 +45,5 @@ input.error {
 
 #grid_inRow {
   display: grid;
-  grid-template-rows: 5fr 1fr;
+  grid-template-rows: 4.75fr 1fr;
 }
