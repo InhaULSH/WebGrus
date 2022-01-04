@@ -77,5 +77,5 @@ UserSchema.statics.findByToken = function (token, cb) {
     })
 }
 
-var User = mongoose.model('User', UserSchema);
-module.exports = { User }
+var UserDB = mongoose.model('UserDB', UserSchema);
+module.exports = { UserDB }

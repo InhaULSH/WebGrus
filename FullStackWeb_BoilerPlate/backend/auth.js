@@ -1,8 +1,8 @@
-const { User } = require('./mongo/user.js')
+const { UserDB } = require('./mongo/user.js')
 
 let auth = (req, res, next) => {
   let token = req.cookies.authToken;
-  User.findByToken(token, (err, user) => {
+  UserDB.findByToken(token, (err, user) => {
     if (err) throw err
     if (!user) { return res.json({
       isAuth: false, error: true
