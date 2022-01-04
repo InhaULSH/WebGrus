@@ -24,9 +24,9 @@ app.get('/api/user', (req, res) => {
 }) // 루트 디렉토리
 
 app.post('/api/user/register', (req, res) => {
-  const User = new UserDB(req.body)
+  const user = new UserDB(req.body)
 
-  User.save((err) => {
+  user.save((err) => {
     if (err) { return res.json({success: false, err}) }
 
     return res.status(200).json({success: true})
