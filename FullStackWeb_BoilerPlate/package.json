@@ -1,0 +1,24 @@
+{
+  "name": "nodejs_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "antd": "^4.18.2",
+    "bcrypt": "^5.0.1",
+    "concurrently": "^6.5.1",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.4",
+    "nodemon": "^2.0.15",
+    "sanitize-html": "^2.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "concurrently \"nodemon ./backend/index.js\" \"npm run start --prefix frontend\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
