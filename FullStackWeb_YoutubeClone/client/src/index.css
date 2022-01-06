@@ -24,7 +24,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 100vh;
 }
 
 input.error {
@@ -36,14 +36,4 @@ input.error {
   color: red;
   height: 5px;
   margin-top: -12px;
-}
-
-#grid_inColumn {
-  display: grid;
-  grid-template-columns: 276px 3fr;
-}
-
-#grid_inRow {
-  display: grid;
-  grid-template-rows: 4.75fr 1fr;
 }

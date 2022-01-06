@@ -6,27 +6,26 @@ import LandingPage from "./views/LandingPage/LandingPage.js";
 import LoginPage from "./views/LoginPage/LoginPage.js";
 import RegisterPage from "./views/RegisterPage/RegisterPage.js";
 import NavBar from "./views/NavBar/NavBar";
-import Footers from "./views/Footer/Footer"
-
-//null   Anyone Can go inside
-//true   only logged in user can go inside
-//false  logged in user can't go inside
-
+import Footer from "./views/Footer/Footer"
+import UploadVideoPage from "./views/UploadVideoPage/UploadVideoPage"
+import DetailVideoPage from "./views/DetailVideoPage/DetailVideoPage"
+import SubscriptionPage from "./views/SubscriptionPage/SubscriptionPage"
 function App() {
   return (
-    <div id="grid_inColumn">
-      <Suspense fallback={(<div>Loading...</div>)}>
-        <NavBar />
-        <div>
-          <Switch>
-            <Route exact path="/" component={Auth(LandingPage, null)} />
-            <Route exact path="/login" component={Auth(LoginPage, false)} />
-            <Route exact path="/register" component={Auth(RegisterPage, false)} />
-          </Switch>
-          <Footers />
-        </div>
-      </Suspense>
-    </div>
+    <Suspense fallback={(<div>Loading...</div>)}>
+      <NavBar />
+      <div style={{ paddingTop: '75px', minHeight: 'calc(100vh - 80px)' }}>
+        <Switch>
+          <Route exact path="/" component={Auth(LandingPage, null)} />
+          <Route exact path="/login" component={Auth(LoginPage, false)} />
+          <Route exact path="/register" component={Auth(RegisterPage, false)} />
+          <Route exact path="/video/upload" component={Auth(UploadVideoPage, true)} />
+          <Route exact path="/video/:videoId" component={Auth(DetailVideoPage, null)} />
+          <Route exact path="/subscription" component={Auth(SubscriptionPage, null)} />
+        </Switch>
+      </div>
+      <Footer />
+    </Suspense>
   );
 }
 
