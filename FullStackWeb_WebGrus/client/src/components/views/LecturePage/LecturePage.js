@@ -20,28 +20,27 @@ function LecturePage() {
       })
     }, [])
 
-    const renderCards = Lecture.map((lectures, index) => {
-      return <Col lg={6} md={8} xs={24}>
-        <a href={`lectures/post/${lectures._id}`}>
-          <div style={{ position: 'relative'}}>
-            <img style={{ width: '100%' }} src={`http://localhost:5000/${lectures.filePath}`} />
-            <div className="applicationCurrent">
-              <span>{lectures.application} / {lectures.capacity}</span>
-            </div>
-          </div>
-        </a>
-        <br />
-        <Meta avatar={<Avatar src={lectures.teacher.Image} />} title={lectures.title} description="" />
-        <br />
-      </Col>
-    })
-
     return (
       <div className="app" style={{ width: '85%', margin: '3rem auto' }}>
         <Title level={2}> Lectures </Title>
         <br />
         <Row gutter={[32, 16]}>
-          {renderCards}
+          {Lecture.map((lectures, index) => {
+            return <Col lg={6} md={8} xs={24}>
+              <a href={`/lectures/${lectures._id}`}>
+                <div style={{ position: 'relative'}}>
+                  <img style={{ width: '100%' }} src={`http://localhost:5000/${lectures.filePath}`} />
+                  <div className="applicationCurrent">
+                    <span>{lectures.application} / {lectures.capacity}</span>
+                  </div>
+                </div>
+              </a>
+              <br />
+              <Meta avatar={<Avatar src={lectures.teacher.Image} />} title={lectures.title} description="" />
+              <span>{lectures.teacher.name}</span>
+              <br />
+            </Col>
+          })}
         </Row>
       </div>
     )
