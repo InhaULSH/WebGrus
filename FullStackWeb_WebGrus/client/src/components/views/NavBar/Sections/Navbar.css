@@ -41,7 +41,7 @@
 
 .menu__container .ant-menu-item a,
 .menu__container .ant-menu-submenu-title a {
-  padding: 10px 15px;
+  padding: 0px 15px;
 }
 
 .menu__container .ant-menu-vertical {

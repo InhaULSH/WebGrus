@@ -5,18 +5,22 @@ const MenuItemGroup = Menu.ItemGroup;
 
 function LeftMenu(props) {
   return (
-    <Menu mode={props.mode} style={{ width: 256 }} mode="vertical">
-    <Menu.Item key="mail">
+    <Menu style={{ width: 256 }} selectedKeys="Selected" mode="vertical">
+    <Menu.Item>
       <a href="/">Introduce</a>
     </Menu.Item>
-    <SubMenu title={<span>Notifications</span>}>
-    </SubMenu>
-    <SubMenu title={<span>Lectures</span>}>
-    </SubMenu>
-    <SubMenu title={<span>Study Groups</span>}>
-    </SubMenu>
-    <SubMenu title={<span>Contest Info</span>}>
-    </SubMenu>
+    <Menu.Item>
+      <a href="/">Notifications</a>
+    </Menu.Item>
+    <Menu.Item>
+      <a href="/lectures">Lectures</a>
+    </Menu.Item>
+    <Menu.Item>
+      <a href="/">Study Groups</a>
+    </Menu.Item>
+    <Menu.Item>
+      <a href="/">Contest Info</a>
+    </Menu.Item>
     </Menu>
   )
 }

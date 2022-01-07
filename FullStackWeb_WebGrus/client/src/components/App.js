@@ -7,6 +7,8 @@ import LoginPage from "./views/LoginPage/LoginPage.js";
 import RegisterPage from "./views/RegisterPage/RegisterPage.js";
 import NavBar from "./views/NavBar/NavBar";
 import Footers from "./views/Footer/Footer"
+import LectureUploadPage from "./views/LectureUploadPage/LectureUploadPage.js";
+import LecturePage from "./views/LecturePage/LecturePage.js";
 
 //null   Anyone Can go inside
 //true   only logged in user can go inside
@@ -22,6 +24,7 @@ function App() {
             <Route exact path="/" component={Auth(LandingPage, null)} />
             <Route exact path="/login" component={Auth(LoginPage, false)} />
             <Route exact path="/register" component={Auth(RegisterPage, false)} />
+            <Route exact path="/lectures" component={Auth(LecturePage, true)} />
             <Route exact path="/lectures/register" component={Auth(LectureUploadPage, true)} />
           </Switch>
           <Footers />
