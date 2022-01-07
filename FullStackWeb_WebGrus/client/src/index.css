@@ -40,7 +40,7 @@ input.error {
 .applicationCurrent {
   bottom: 0;
   right: 0;
-  position: absolute;
+  position: relative;
   margin: 4px;
   color: #128ffc;
   background-color: #e3e3e3;
@@ -50,9 +50,20 @@ input.error {
   font-size: 12px;
 }
 
+.applicationPeriodMarker {
+  color: white;
+  border-radius: 4px;
+  text-align: center;
+}
+
 #grid_inColumn {
   display: grid;
   grid-template-columns: 276px 3fr;
+}
+
+#grid_Lecture {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
 }
 
 #grid_inRow {

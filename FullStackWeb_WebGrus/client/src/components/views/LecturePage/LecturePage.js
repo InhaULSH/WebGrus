@@ -11,7 +11,7 @@ function LecturePage() {
     const [Lecture, setLecture] = useState([])
 
     useEffect(() => {
-      axios.get('/api/lectures/getLecture').then(response => {
+      axios.get('/api/lectures/getLectures').then(response => {
         if (response.data.success) {
           setLecture(response.data.lectures)
         } else {
@@ -21,7 +21,7 @@ function LecturePage() {
     }, [])
 
     return (
-      <div className="app" style={{ width: '85%', margin: '3rem auto' }}>
+      <div className="app" style={{ display: 'flex', width: '85%', margin: 'auto' }}>
         <Title level={2}> Lectures </Title>
         <br />
         <Row gutter={[32, 16]}>
@@ -30,14 +30,16 @@ function LecturePage() {
               <a href={`/lectures/${lectures._id}`}>
                 <div style={{ position: 'relative'}}>
                   <img style={{ width: '100%' }} src={`http://localhost:5000/${lectures.filePath}`} />
-                  <div className="applicationCurrent">
-                    <span>{lectures.application} / {lectures.capacity}</span>
-                  </div>
                 </div>
+                <br />
+                <span><h2>{lectures.title}</h2></span>
               </a>
               <br />
-              <Meta avatar={<Avatar src={lectures.teacher.Image} />} title={lectures.title} description="" />
-              <span>{lectures.teacher.name}</span>
+              <div id="grid_Lecture">
+                <Meta avatar={<Avatar src={lectures.teacher.Image} />} title={lectures.teacher.name} description="" />
+                {lectures.applicationPeriod ? <h3 className="applicationPeriodMarker" style={{backgroundColor: 'green'}}>모집</h3>
+                 : <h3 className="applicationPeriodMarker" style={{backgroundColor: 'coral'}}>마감</h3>}
+              </div>
               <br />
             </Col>
           })}

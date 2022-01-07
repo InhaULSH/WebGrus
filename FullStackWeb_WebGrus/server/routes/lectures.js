@@ -37,16 +37,16 @@ router.post('/uploadThumnail', (req, res) => {
 
 router.post('/uploadLecture', (req, res) => {
   const lecture = new Lecture(req.body);
-  lecture.save((err, doc) => {
+  lecture.save((err) => {
     if (err) return res.status(400).send(err)
     return res.status(200).json({ success: true })
   })
 })
 
-router.get('/getLecture', (req, res) => {
-  Lecture.find().populate('teacher').exec((err, doc) => {
+router.get('/getLectures', (req, res) => {
+  Lecture.find().populate('teacher').exec((err, lectures) => {
     if (err) return res.status(400).json({ success: false, err })
-    return res.status(200).json({ success: true })
+    return res.status(200).json({ success: true, lectures })
   })
 })
 

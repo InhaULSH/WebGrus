@@ -44,13 +44,12 @@ function LectureUploadPage(props) {
     axios.post('/api/lectures/uploadThumnail', formData, config).then(response => {
       if (response.data.success) {
        setLectureFilePath(response.data.url)
-       console.log(LectureFilePath)
       } else {
         alert('Thumnail of Lecture has not been uploaded')
       }
     })
   }
-
+  
   const onSubmit = (event) => {
     event.preventDefault();
 

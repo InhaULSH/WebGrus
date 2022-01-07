@@ -107,5 +107,5 @@
 
 #grid_NavBar {
   display: grid;
-  grid-auto-rows: 4.75fr 1fr;
+  grid-template-rows: 4.7fr 1fr;
 }

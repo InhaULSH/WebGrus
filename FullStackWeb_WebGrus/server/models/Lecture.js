@@ -29,7 +29,7 @@ const lectureSchema = mongoose.Schema({
   },
   applicationPeriod: {
     type: Boolean,
-    default: true,
+    default: true
   },
   filePath: {
     type: String
