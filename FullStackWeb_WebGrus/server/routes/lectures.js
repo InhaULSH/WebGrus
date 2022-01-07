@@ -38,7 +38,7 @@ router.post('/uploadThumnail', (req, res) => {
 router.post('/uploadLecture', (req, res) => {
   const lecture = new Lecture(req.body);
   lecture.save((err, doc) => {
-    if (err) return res.status(400).json({ success: false, err })
+    if (err) return res.status(400).send(err)
     return res.status(200).json({ success: true })
   })
 })
