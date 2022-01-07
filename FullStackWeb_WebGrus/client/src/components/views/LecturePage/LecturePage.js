@@ -19,7 +19,7 @@ function LecturePage() {
         }
       })
     }, [])
-
+    
     return (
       <div className="app" style={{ display: 'flex', width: '85%', margin: 'auto' }}>
         <Title level={2}> Lectures </Title>

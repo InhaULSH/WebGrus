@@ -36,6 +36,16 @@ const lectureSchema = mongoose.Schema({
   }
 }, { timestamps: true })
 
+lectureSchema.method.autoApplicationPeriod = function() {
+  var lecture = this;
+  if (lecture.capacity === lecture.application) {
+    lecture.applicationPeriod = false;
+  } else {
+    lecture.applicationPeriod = true;
+  }
+  lecture.save()
+}
+
 const Lecture = mongoose.model('Lecture', lectureSchema);
 
 module.exports = { Lecture }
