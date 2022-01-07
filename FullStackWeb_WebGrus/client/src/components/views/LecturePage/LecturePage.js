@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { FaCode } from "react-icons/fa";
 import { withRouter } from "react-router-dom";
-import { Card, Icon, Avatar, Col, Typography, Row } from 'antd';
+import { Card, Icon, Avatar, Col, Typography, Row, Button } from 'antd';
 import axios from 'axios';
 
 const { Title } = Typography;
@@ -19,10 +19,16 @@ function LecturePage() {
         }
       })
     }, [])
-    
+
     return (
       <div className="app" style={{ display: 'flex', width: '85%', margin: 'auto' }}>
         <Title level={2}> Lectures </Title>
+        <br />
+        <a href="/lectures/register">
+          <Button type="default" style={{ minWidth: '100%', }}>
+            Register new lecture
+          </Button>
+        </a>
         <br />
         <Row gutter={[32, 16]}>
           {Lecture.map((lectures, index) => {

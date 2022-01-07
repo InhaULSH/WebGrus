@@ -61,12 +61,12 @@ input.error {
   grid-template-columns: 276px 3fr;
 }
 
-#grid_Lecture {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-}
-
 #grid_inRow {
   display: grid;
   grid-template-rows: 4.75fr 1fr;
+}
+
+#grid_Lecture {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
 }
