@@ -43,4 +43,11 @@ router.post('/uploadLecture', (req, res) => {
   })
 })
 
+router.get('/getLecture', (req, res) => {
+  Lecture.find().populate('teacher').exec((err, docs) => {
+    if (err) return res.status(400).json({ success: false, err })
+    return res.status(200).json({ success: true })
+  })
+})
+
 module.exports = router;

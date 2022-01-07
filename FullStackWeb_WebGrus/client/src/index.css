@@ -31,11 +31,23 @@ input.error {
   border-color: red;
 }
 
-
 .input-feedback {
   color: red;
   height: 5px;
   margin-top: -12px;
+}
+
+.applicationCurrent {
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  margin: 4px;
+  color: #128ffc;
+  background-color: #e3e3e3;
+  opacity: 0.0;
+  padding: 2px 4px;
+  border-radius: 0.5px;
+  font-size: 12px;
 }
 
 #grid_inColumn {
