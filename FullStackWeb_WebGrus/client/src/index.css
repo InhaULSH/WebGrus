@@ -1,3 +1,5 @@
+@import '~antd/dist/antd.css';
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
@@ -24,11 +26,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  min-height: 90vh;
+  height: auto;
 }
 
 input.error {
   border-color: red;
+  max-height: inherit;
 }
 
 .input-feedback {
@@ -56,17 +60,28 @@ input.error {
   text-align: center;
 }
 
-#grid_inColumn {
+#grid_Main2 {
   display: grid;
   grid-template-columns: 276px 3fr;
 }
 
-#grid_inRow {
-  display: grid;
-  grid-template-rows: 4.75fr 1fr;
+@media (max-width: 767px) {
+  .ant-typography {
+    margin-top: 20px;
+  }
+  
+  #grid_Main2 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  #grid_Main1 {
+    display: grid;
+    grid-template-rows: 70px 3fr;
+  }
 }
 
-#grid_Lecture {
+#grid_LectureInfo {
   display: grid;
   grid-template-columns: 3fr 1fr;
 }

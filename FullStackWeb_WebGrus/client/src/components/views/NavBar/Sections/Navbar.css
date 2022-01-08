@@ -75,9 +75,15 @@
   padding: 14px 24px !important;
 }
 
+#grid_NavBar1 {
+  display: grid;
+  grid-template-rows: 4.7fr 1fr;
+}
+
 @media (max-width: 767px) {
   .menu{
-    width: 200px;
+    width: auto;
+    height: 51px;
   }
 
   .menu__mobile-button {
@@ -93,6 +99,7 @@
 
   .menu__logo a {
     margin-left: -20px;
+    padding: 0px 0px;
   }
 
   .menu__container .ant-menu-item,
@@ -103,9 +110,14 @@
   .menu__logo a {
     padding: 10px 20px;
   }
-}
 
-#grid_NavBar {
-  display: grid;
-  grid-template-rows: 4.7fr 1fr;
+  #grid_NavBar1 {
+    display: grid;
+    grid-template-rows: 1fr 0px;
+  }
+
+  #grid_NavBar2 {
+    display: grid;
+    grid-template-columns: 4.7fr 1fr;
+  }
 }

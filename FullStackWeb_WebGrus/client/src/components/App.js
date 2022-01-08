@@ -9,6 +9,7 @@ import NavBar from "./views/NavBar/NavBar";
 import Footers from "./views/Footer/Footer"
 import LectureUploadPage from "./views/LectureUploadPage/LectureUploadPage.js";
 import LecturePage from "./views/LecturePage/LecturePage.js";
+import LectureDetailPage from "./views/LectureDetailPage/LectureDetailPage.js";
 
 //null   Anyone Can go inside
 //true   only logged in user can go inside
@@ -16,8 +17,8 @@ import LecturePage from "./views/LecturePage/LecturePage.js";
 
 function App() {
   return (
-    <div id="grid_inColumn">
-      <Suspense fallback={(<div>Loading...</div>)}>
+    <div  id="grid_Main2">
+      <Suspense fallback={(<div>Loading...</div>)} id="grid_Main1">
         <NavBar />
         <div>
           <Switch>
@@ -26,6 +27,7 @@ function App() {
             <Route exact path="/register" component={Auth(RegisterPage, false)} />
             <Route exact path="/lectures" component={Auth(LecturePage, true)} />
             <Route exact path="/lectures/register" component={Auth(LectureUploadPage, true)} />
+            <Route exact path="/lectures/:lectureId" component={Auth(LectureDetailPage, true)} />
           </Switch>
           <Footers />
         </div>

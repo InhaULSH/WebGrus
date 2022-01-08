@@ -25,7 +25,7 @@ function LecturePage() {
         <Title level={2}> Lectures </Title>
         <br />
         <a href="/lectures/register">
-          <Button type="default" style={{ minWidth: '100%', }}>
+          <Button type="default" style={{ minWidth: '100%' }}>
             Register new lecture
           </Button>
         </a>
@@ -35,13 +35,13 @@ function LecturePage() {
             return <Col lg={6} md={8} xs={24}>
               <a href={`/lectures/${lectures._id}`}>
                 <div style={{ position: 'relative'}}>
-                  <img style={{ width: '100%' }} src={`http://localhost:5000/${lectures.filePath}`} />
+                  <img style={{ width: '100%', maxHeight: 'inherit' }} src={`http://localhost:5000/${lectures.filePath}`} />
                 </div>
                 <br />
                 <span><h2>{lectures.title}</h2></span>
               </a>
               <br />
-              <div id="grid_Lecture">
+              <div id="grid_LectureInfo">
                 <Meta avatar={<Avatar src={lectures.teacher.Image} />} title={lectures.teacher.name} description="" />
                 {lectures.applicationPeriod ? <h3 className="applicationPeriodMarker" style={{backgroundColor: 'green'}}>모집</h3>
                  : <h3 className="applicationPeriodMarker" style={{backgroundColor: 'coral'}}>마감</h3>}

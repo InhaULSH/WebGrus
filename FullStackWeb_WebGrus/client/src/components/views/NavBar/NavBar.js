@@ -16,11 +16,11 @@ function NavBar() {
   };
 
   return (
-    <nav className="menu" mode="vertical">
+    <nav className="menu" mode="vertical" id="grid_NavBar2">
       <div className="menu__logo">
         <a href="/">WebGrus</a>
       </div>
-      <div className="menu__container" id="grid_NavBar">
+      <div className="menu__container" id="grid_NavBar1">
         <div className="menu_left">
           <LeftMenu mode="vertical" />
         </div>
@@ -30,13 +30,14 @@ function NavBar() {
         <Button
           className="menu__mobile-button"
           type="primary"
+          style={{ width: '100px', borderRadius: '4px'}}
           onClick={showDrawer}
         >
         <Icon type="align-right" />
         </Button>
         <Drawer
-          title="Basic Drawer"
-          placement="left"
+          title=""
+          placement="right"
           className="menu_drawer"
           closable={false}
           onClose={onClose}
