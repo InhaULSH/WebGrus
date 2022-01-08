@@ -5,7 +5,7 @@ function LectureDetailPage() {
     return (
       <div className="app">
         <FaCode style={{ fontSize: '6em' }} /><br />
-        <span style={{ fontSize: '2rem' }}>Let's Start Coding!</span>
+        <span style={{ fontSize: '2rem' }}></span>
       </div>
     )
 }
