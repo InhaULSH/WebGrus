@@ -72,7 +72,7 @@ function LectureUploadPage(props) {
       }
     })
   }
-
+  
   return (
     <div style={{ maxWidth: '1000px', margin: '2rem auto' }}>
       <div style={{ textAlign: 'center', marginBottom: '2rme' }}>
