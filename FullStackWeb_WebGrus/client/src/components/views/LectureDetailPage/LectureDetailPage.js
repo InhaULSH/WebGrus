@@ -44,7 +44,7 @@ function LectureDetailPage(props) {
         buttons = (
           <div>
             <Button type="primary" style={{ minWidth: '100%' }}>
-              Apply to this lecture
+              Apply for this lecture
             </Button>
           </div>
         )
