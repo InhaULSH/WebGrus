@@ -69,7 +69,7 @@ input.error {
   .ant-typography {
     margin-top: 20px;
   }
-  
+
   #grid_Main2 {
     display: grid;
     grid-template-columns: 1fr;
@@ -79,9 +79,4 @@ input.error {
     display: grid;
     grid-template-rows: 70px 3fr;
   }
-}
-
-#grid_LectureInfo {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
 }
