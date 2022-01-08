@@ -63,12 +63,12 @@ function LectureUploadPage(props) {
     }
     axios.post('/api/lectures/uploadLecture', variable).then(response => {
       if (response.data.success) {
-        message.success('Lecture has been registered successfully')
+        alert('Lecture has been registered successfully') // 여기 원래 antd message 였음
         setTimeout(() => {
-          props.history.push('/lecutures')
-        }, 3000)
+          props.history.push('/')
+        }, 2000)
       } else {
-        alert('Lecture has not been registered')
+        alert('Lecture has not been registered. please check your input.')
       }
     })
   }
@@ -98,7 +98,7 @@ function LectureUploadPage(props) {
         </div>
         <br />
         <br />
-        <label>Lecture Name</label>
+        <label>Lecture Title</label>
         <Input value={LectureTitle} onChange={onTitleChange} />
         <br />
         <br />
@@ -111,7 +111,7 @@ function LectureUploadPage(props) {
         <br />
         <br />
         <label>Capacity</label>
-        <Input value={LectureCapacity} onChange={onCapacityChange} />
+        <Input type="number" value={LectureCapacity} onChange={onCapacityChange} />
         <br />
         <br />
         <Button type="primary" size="large" onClick={onSubmit}>

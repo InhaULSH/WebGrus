@@ -53,11 +53,11 @@ function LoginPage(props) {
                 }
                 props.history.push("/");
               } else {
-                setFormErrorMessage('Check out your Account or Password again')
+                alert('Check out your Account or Password again') // 이부분 원래 setFormErrorMessage 였음
               }
             })
             .catch(err => {
-              setFormErrorMessage('Check out your Account or Password again')
+              alert('Check out your Account or Password again') // 이부분 원래 setFormErrorMessage 였음
               setTimeout(() => {
                 setFormErrorMessage("")
               }, 3000);

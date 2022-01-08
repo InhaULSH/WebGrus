@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
+import { message } from 'antd';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { registerUser } from "../../../_actions/user_actions";
@@ -36,6 +37,7 @@ const tailFormItemLayout = {
 
 function RegisterPage(props) {
   const dispatch = useDispatch();
+
   return (
 
     <Formik
@@ -76,7 +78,7 @@ function RegisterPage(props) {
             if (response.payload.success) {
               props.history.push("/login");
             } else {
-              alert(response.payload.err.errmsg)
+              alert('Registration Error! please contact the site manager')
             }
           })
 
