@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import {  } from "../../../_actions/user_actions";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Form, Icon, Input, Button, Typography, message } from 'antd';
+import { Form, Icon, Input, Button, Typography, message, InputNumber } from 'antd';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
@@ -111,7 +111,7 @@ function LectureUploadPage(props) {
         <br />
         <br />
         <label>Capacity</label>
-        <InputNumber value={LectureCapacity} min={1} max={1000} defaultValue={3} onChange={onCapacityChange} />
+        <Input value={LectureCapacity} onChange={onCapacityChange} />
         <br />
         <br />
         <Button type="primary" size="large" onClick={onSubmit}>
