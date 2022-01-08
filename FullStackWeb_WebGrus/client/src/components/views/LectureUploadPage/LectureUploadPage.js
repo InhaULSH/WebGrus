@@ -49,7 +49,7 @@ function LectureUploadPage(props) {
       }
     })
   }
-  
+
   const onSubmit = (event) => {
     event.preventDefault();
 
@@ -111,7 +111,7 @@ function LectureUploadPage(props) {
         <br />
         <br />
         <label>Capacity</label>
-        <Input value={LectureCapacity} onChange={onCapacityChange} />
+        <InputNumber value={LectureCapacity} min={1} max={1000} defaultValue={3} onChange={onCapacityChange} />
         <br />
         <br />
         <Button type="primary" size="large" onClick={onSubmit}>
