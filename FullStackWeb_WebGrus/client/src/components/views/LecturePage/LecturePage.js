@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { FaCode } from "react-icons/fa";
 import { withRouter } from "react-router-dom";
-import { Card, Icon, Avatar, Col, Typography, Row, Button, Divider, message } from 'antd';
+import { Card, Avatar, Col, Typography, Row, Button, Divider, message } from 'antd';
 import axios from 'axios';
 
 const { Title } = Typography;

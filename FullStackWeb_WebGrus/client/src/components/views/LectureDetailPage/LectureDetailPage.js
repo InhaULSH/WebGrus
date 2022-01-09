@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaCode } from "react-icons/fa";
 import { useSelector } from 'react-redux';
-import { Row, Col, List, Avatar, Icon, Typography, Divider, Button, Skeleton, message } from 'antd';
+import { Row, Col, List, Avatar, Typography, Divider, Button, Skeleton, Popconfirm, message, Icon } from 'antd';
 import axios from 'axios';
 
 const { Title } = Typography;
@@ -30,22 +30,43 @@ function LectureDetailPage(props) {
       var buttons = (<></>)
       if (LectureDetail.teacher._id === user.userData._id) {
         buttons = (
+          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr'}}>
+            <div>
+              <a href={`/lectures/${lectureId}/LectureEditPage`}>
+                <Button type="default" style={{ minWidth: '100%' }} style={{ marginRight: '20px' }}>
+                  Edit this lecture
+                </Button>
+              </a>
+            </div>
+            <div>
+              <Popconfirm title="Are you sure？ This operation is irreversible."
+              icon={<Icon type="question" style={{ color: 'red' }} />}>
+                <Button style={{ minWidth: '100%', color: 'red', borderColor: 'coral' }}>
+                  Delete this lecture
+                </Button>
+              </Popconfirm>
+            </div>
+          </div>
+        )
+      } else if (user.userData.isAdmin == true) {
+        buttons = (
           <div>
-            <a href={`/lectures/${lectureId}/LectureEditPage`}>
-              <Button type="default" style={{ minWidth: '100%' }} style={{ marginRight: '20px' }}>
-                Edit this lecture
+            <Popconfirm title="Are you sure？ This operation is irreversible. \nIt is recommended to contact the lecturer before deleting it."
+            icon={<Icon type="question" style={{ color: 'red' }} />}>
+              <Button style={{ minWidth: '100%', color: 'red', borderColor: 'coral' }}>
+                Delete this lecture
               </Button>
-            </a>
+            </Popconfirm>
           </div>
         )
       } else {
-        buttons = (
-          <div>
-            <Button type="primary" style={{ minWidth: '100%' }}>
-              Apply for this lecture
-            </Button>
-          </div>
-        )
+          buttons = (
+            <div>
+              <Button type="primary" style={{ minWidth: '100%' }}>
+                Apply for this lecture
+              </Button>
+            </div>
+          )
       }
 
       return (

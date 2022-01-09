@@ -1,5 +1,4 @@
-import React from 'react'
-import {Icon} from 'antd';
+import React from 'react';
 
 function Footer() {
     return (
