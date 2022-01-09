@@ -12,16 +12,6 @@ import { useSelector } from 'react-redux';
 const { TextArea } = Input;
 const { Title } = Typography;
 
-const formItemLayout = {
-  labelCol: {
-    xs: { span: 24 },
-    sm: { span: 8 },
-  },
-  wrapperCol: {
-    xs: { span: 24 },
-    sm: { span: 16 },
-  },
-};
 const tailFormItemLayout = {
   wrapperCol: {
     xs: {
@@ -135,12 +125,12 @@ function LectureUploadPage(props) {
             handleReset,
           } = props;
           return (
-            <div style={{ maxWidth: '1000px', margin: '2rem auto' }}>
+            <div className="app" style={{ minWidth: '575px',maxWidth: '1000px', margin: '2rem auto' }}>
             <div style={{ textAlign: 'center', marginBottom: '2rme' }}>
               <Title level={2}>Register Lecture</Title>
             </div>
             <div>
-              <Form style={{ minWidth: '375px' }} {...formItemLayout} onSubmit={handleSubmit} >
+              <Form style={{ minWidth: '375px' }} onSubmit={handleSubmit} >
                 <Form.Item required label="Thumnail">
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Dropzone onDrop={onDropFile} multiple={false} maxSize={100000000000}>

@@ -51,7 +51,6 @@ function LoginPage(props) {
                 } else {
                   localStorage.removeItem('rememberMe');
                 }
-                message.success('Sign in Success!')
                 props.history.push("/");
               } else {
                 setFormErrorMessage('Check out your Account or Password again')

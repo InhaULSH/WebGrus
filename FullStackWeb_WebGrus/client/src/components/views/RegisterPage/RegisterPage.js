@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import moment from "moment";
-import { message } from 'antd';
+import { Typography, message } from 'antd';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { registerUser } from "../../../_actions/user_actions";
 import { useDispatch } from "react-redux";
-
 import {
   Form,
   Input,
   Button,
 } from 'antd';
+
+const { Title } = Typography;
 
 const formItemLayout = {
   labelCol: {
@@ -108,9 +109,9 @@ function RegisterPage(props) {
         } = props;
         return (
           <div className="app">
-            <h2>Sign up</h2>
-            <Form style={{ minWidth: '375px' }} {...formItemLayout} onSubmit={handleSubmit} >
-
+            <Title level={2}>Sign Up</Title>
+            <br />
+            <Form style={{ minWidth: '475px' }} onSubmit={handleSubmit} {...formItemLayout}>
               <Form.Item required label="Name">
                 <Input
                   id="name"
@@ -196,9 +197,13 @@ function RegisterPage(props) {
                 )}
               </Form.Item>
 
+              {formErrorMessage && (
+                <label ><p style={{ color: '#ff0000bf', fontSize: '0.7rem', border: '1px solid', padding: '1rem', borderRadius: '10px' }}>{formErrorMessage}</p></label>
+              )}
+
               <Form.Item {...tailFormItemLayout}>
                 <Button onClick={handleSubmit} type="primary" disabled={isSubmitting}>
-                  Submit
+                  Register
                 </Button>
               </Form.Item>
             </Form>
