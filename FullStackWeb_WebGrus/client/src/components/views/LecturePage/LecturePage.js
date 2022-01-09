@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { FaCode } from "react-icons/fa";
 import { withRouter } from "react-router-dom";
-import { Card, Icon, Avatar, Col, Typography, Row, Button, Divider } from 'antd';
+import { Card, Icon, Avatar, Col, Typography, Row, Button, Divider, message } from 'antd';
 import axios from 'axios';
 
 const { Title } = Typography;
 const { Meta } = Card;
 
-function LecturePage() {
+function LecturePage(props) {
     const [Lecture, setLecture] = useState([])
 
     useEffect(() => {
@@ -15,7 +15,8 @@ function LecturePage() {
         if (response.data.success) {
           setLecture(response.data.lectures)
         } else {
-          alert('Lecture Infomation Error! Please contact the site manager')
+          message.error('Lecture Infomation Error! Please contact the site manager')
+          props.history.push('/')
         }
       })
     }, [])

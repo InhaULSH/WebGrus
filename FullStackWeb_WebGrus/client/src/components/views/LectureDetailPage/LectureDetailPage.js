@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaCode } from "react-icons/fa";
 import { useSelector } from 'react-redux';
-import { Row, Col, List, Avatar, Icon, Typography, Divider, Button } from 'antd';
+import { Row, Col, List, Avatar, Icon, Typography, Divider, Button, Skeleton, message } from 'antd';
 import axios from 'axios';
 
 const { Title } = Typography;
@@ -20,10 +20,8 @@ function LectureDetailPage(props) {
         if (response.data.success) {
           setLectureDetail(response.data.lectureDetail)
         } else {
-          alert('Lecture Infomation Error! Please contact the site manager')
-          setTimeout(() => {
-            props.history.push('/lecutures')
-          }, 3000)
+          message.error('Lecture Infomation Error! Please contact the site manager')
+          props.history.push('/')
         }
       })
     }, [])
@@ -96,7 +94,7 @@ function LectureDetailPage(props) {
         </Row>
       )
     } else {
-      return (<div>Loading</div>)
+      return (<div className="app" style={{ width: '65%', margin: 'auto' }}><Skeleton active /></div>)
     }
 }
 

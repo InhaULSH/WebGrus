@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {  } from "../../../_actions/user_actions";
+import { registerLecture } from "../../../_actions/lecture_actions";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Form, Icon, Input, Button, Typography, message, InputNumber } from 'antd';
@@ -12,27 +12,37 @@ import { useSelector } from 'react-redux';
 const { TextArea } = Input;
 const { Title } = Typography;
 
+const formItemLayout = {
+  labelCol: {
+    xs: { span: 24 },
+    sm: { span: 8 },
+  },
+  wrapperCol: {
+    xs: { span: 24 },
+    sm: { span: 16 },
+  },
+};
+const tailFormItemLayout = {
+  wrapperCol: {
+    xs: {
+      span: 24,
+      offset: 0,
+    },
+    sm: {
+      span: 16,
+      offset: 8,
+    },
+  },
+};
+
 function LectureUploadPage(props) {
+  const dispatch = useDispatch();
+
   const user = useSelector(state => state.user) // redux state에서 유저정보 가져옴
 
-  const [LectureTitle, setLectureTitle] = useState("")
-  const [LectureDescription, setLectureDescription] = useState("")
-  const [LectureContact, setLectureContact] = useState("")
-  const [LectureCapacity, setLectureCapacity] = useState(5)
-  const [LectureFilePath, setLectureFilePath] = useState("")
+  const [formErrorMessage, setFormErrorMessage] = useState('')
 
-  const onTitleChange = (event) => {
-    setLectureTitle(event.currentTarget.value)
-  }
-  const onDescriptionChange = (event) => {
-    setLectureDescription(event.currentTarget.value)
-  }
-  const onContactChange = (event) => {
-    setLectureContact(event.currentTarget.value)
-  }
-  const onCapacityChange = (event) => {
-    setLectureCapacity(event.currentTarget.value)
-  }
+  const [LectureFilePath, setLectureFilePath] = useState("")
 
   const onDropFile = (files) => {
     let formData = new FormData();
@@ -45,81 +55,193 @@ function LectureUploadPage(props) {
       if (response.data.success) {
        setLectureFilePath(response.data.url)
       } else {
-        alert('Thumnail of Lecture has not been uploaded')
+        setFormErrorMessage('Lecture Thumnail Upload Error! Check out your input')
       }
     })
+    .catch(err => {
+      setFormErrorMessage('Lecture Thumnail Upload Error! Check out your input')
+      setTimeout(() => {
+        setFormErrorMessage("")
+      }, 3000);
+    });
   }
 
-  const onSubmit = (event) => {
-    event.preventDefault();
-
-    const variable = {
-      teacher: user.userData._id,
-      title: LectureTitle,
-      description: LectureDescription,
-      contactInfo: LectureContact,
-      capacity: LectureCapacity,
-      filePath: LectureFilePath
-    }
-    axios.post('/api/lectures/uploadLecture', variable).then(response => {
-      if (response.data.success) {
-        alert('Lecture has been registered successfully') // 여기 원래 antd message 였음
-        setTimeout(() => {
-          props.history.push('/')
-        }, 2000)
-      } else {
-        alert('Lecture has not been registered. please check your input.')
-      }
-    })
-  }
-  
   return (
-    <div style={{ maxWidth: '1000px', margin: '2rem auto' }}>
-      <div style={{ textAlign: 'center', marginBottom: '2rme' }}>
-        <Title level={2}>Register Lecture</Title>
-      </div>
-      <Form onSubmit={onSubmit}>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Dropzone onDrop={onDropFile} multiple={false} maxSize={100000000000}>
-            {({ getRootProps, getInputProps }) => (
-              <div style={{ width: '300px', height: '240px', border: '1px solid lightgray', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                {...getRootProps()}
-              >
-                <input {...getInputProps()} />
-                <Icon type="plus" style={{ fontSize: '3rem' }} />
-              </div>
-            )}
-          </Dropzone>
-          { LectureFilePath &&
-            <div style={{ display: 'flex', maxHeight: '500px', maxWidth: '700px' }}>
-              <img src={`http://localhost:5000/${LectureFilePath}`} alt="thumanail_lecuture" />
+      <Formik
+        initialValues={{
+          teacher: '',
+          title: '',
+          description: '',
+          contactInfo: '',
+          capacity: 5,
+          filePath: ''
+        }}
+        validationSchema={Yup.object().shape({
+          teacher: Yup.string(),
+          title: Yup.string()
+            .required('Lecture title is required'),
+          description: Yup.string()
+            .required('Lecture description is required')
+            .min(10, 'description must be at least 10 characters'),
+          contactInfo: Yup.string()
+            .required('Contact infomation is required'),
+          capacity: Yup.number()
+            .required('Lecture capacity is required'),
+          filePath: Yup.string()
+        })}
+        onSubmit={(values, { setSubmitting }) => {
+          setTimeout(() => {
+
+            let dataToSubmit = {
+              teacher: user.userData._id,
+              title: values.title,
+              description: values.description,
+              contactInfo: values.contactInfo,
+              capacity: values.capacity,
+              filePath: LectureFilePath
+            };
+
+            dispatch(registerLecture(dataToSubmit)).then(response => {
+              if (response.payload.success) {
+                message.success('Lecture has been registered successfully')
+                setTimeout(() => {
+                  props.history.push('/')
+                }, 2000)
+              } else {
+                setFormErrorMessage('Lecture Register Error! Check out your input')
+              }
+            })
+            .catch(err => {
+              setFormErrorMessage('Lecture Register Error! Check out your input')
+              setTimeout(() => {
+                setFormErrorMessage("")
+              }, 3000);
+            });
+
+            setSubmitting(false);
+          }, 500);
+        }}
+      >
+        {props => {
+          const {
+            values,
+            touched,
+            errors,
+            dirty,
+            isSubmitting,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            handleReset,
+          } = props;
+          return (
+            <div style={{ maxWidth: '1000px', margin: '2rem auto' }}>
+            <div style={{ textAlign: 'center', marginBottom: '2rme' }}>
+              <Title level={2}>Register Lecture</Title>
             </div>
-          }
-        </div>
-        <br />
-        <br />
-        <label>Lecture Title</label>
-        <Input value={LectureTitle} onChange={onTitleChange} />
-        <br />
-        <br />
-        <label>Lecture Description</label>
-        <TextArea value={LectureDescription} onChange={onDescriptionChange} />
-        <br />
-        <br />
-        <label>Contact Info</label>
-        <TextArea value={LectureContact} onChange={onContactChange} />
-        <br />
-        <br />
-        <label>Capacity</label>
-        <Input type="number" value={LectureCapacity} onChange={onCapacityChange} />
-        <br />
-        <br />
-        <Button type="primary" size="large" onClick={onSubmit}>
-          Register
-        </Button>
-      </Form>
-    </div>
+            <div>
+              <Form style={{ minWidth: '375px' }} {...formItemLayout} onSubmit={handleSubmit} >
+                <Form.Item required label="Thumnail">
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <Dropzone onDrop={onDropFile} multiple={false} maxSize={100000000000}>
+                      {({ getRootProps, getInputProps }) => (
+                        <div style={{ width: '300px', height: '240px', border: '1px solid lightgray', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                        {...getRootProps()}
+                        >
+                          <input {...getInputProps()} />
+                          <Icon type="plus" style={{ fontSize: '3rem' }} />
+                        </div>
+                      )}
+                    </Dropzone>
+                    { LectureFilePath &&
+                      <div style={{ display: 'flex', maxHeight: '500px', maxWidth: '700px' }}>
+                        <img src={`http://localhost:5000/${LectureFilePath}`} alt="thumanail_lecuture" />
+                      </div>
+                    }
+                  </div>
+                </Form.Item>
+
+                <Form.Item required label="Title">
+                  <Input
+                    id="title"
+                    placeholder="Enter title of your lecture"
+                    type="text"
+                    value={values.title}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.title && touched.title ? 'text-input error' : 'text-input'
+                    }
+                  />
+                  {errors.title && touched.title && (
+                    <div className="input-feedback">{errors.title}</div>
+                  )}
+                </Form.Item>
+
+                <Form.Item required label="Description">
+                  <Input
+                    id="description"
+                    placeholder="Enter description of your lecture"
+                    type="text"
+                    value={values.description}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.description && touched.description ? 'text-input error' : 'text-input'
+                    }
+                  />
+                  {errors.description && touched.description && (
+                    <div className="input-feedback">{errors.description}</div>
+                  )}
+                </Form.Item>
+
+                <Form.Item required label="Contact info" hasFeedback validateStatus={errors.contactInfo && touched.contactInfo ? "error" : 'success'}>
+                  <Input
+                    id="contactInfo"
+                    placeholder="Enter your contact infomation"
+                    type="text"
+                    value={values.contactInfo}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.contactInfo && touched.contactInfo ? 'text-input error' : 'text-input'
+                    }
+                  />
+                  {errors.contactInfo && touched.contactInfo && (
+                    <div className="input-feedback">{errors.contactInfo}</div>
+                  )}
+                </Form.Item>
+
+                <Form.Item required label="Capacity" hasFeedback validateStatus={errors.capacity && touched.capacity ? "error" : 'success'}>
+                  <Input
+                    id="capacity"
+                    placeholder="Enter capacity of your lecture"
+                    type="number"
+                    value={values.capacity}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.capacity && touched.capacity ? 'text-input error' : 'text-input'
+                    }
+                  />
+                  {errors.capacity && touched.capacity && (
+                    <div className="input-feedback">{errors.capacity}</div>
+                  )}
+                </Form.Item>
+
+                <Form.Item {...tailFormItemLayout}>
+                  <Button onClick={handleSubmit} type="primary" disabled={isSubmitting}>
+                    Register
+                  </Button>
+                </Form.Item>
+              </Form>
+              </div>
+              </div>
+          );
+        }}
+    </Formik>
   )
 };
+
 
 export default withRouter(LectureUploadPage);

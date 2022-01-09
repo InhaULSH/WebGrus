@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import { loginUser } from "../../../_actions/user_actions";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Form, Icon, Input, Button, Checkbox, Typography } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Typography, message } from 'antd';
 import { useDispatch } from "react-redux";
 
 const { Title } = Typography;
@@ -51,13 +51,14 @@ function LoginPage(props) {
                 } else {
                   localStorage.removeItem('rememberMe');
                 }
+                message.success('Sign in Success!')
                 props.history.push("/");
               } else {
-                alert('Check out your Account or Password again') // 이부분 원래 setFormErrorMessage 였음
+                setFormErrorMessage('Check out your Account or Password again')
               }
             })
             .catch(err => {
-              alert('Check out your Account or Password again') // 이부분 원래 setFormErrorMessage 였음
+              setFormErrorMessage('Check out your Account or Password again')
               setTimeout(() => {
                 setFormErrorMessage("")
               }, 3000);

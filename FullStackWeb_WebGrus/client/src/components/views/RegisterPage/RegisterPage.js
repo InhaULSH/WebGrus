@@ -38,8 +38,9 @@ const tailFormItemLayout = {
 function RegisterPage(props) {
   const dispatch = useDispatch();
 
-  return (
+  const [formErrorMessage, setFormErrorMessage] = useState('')
 
+  return (
     <Formik
       initialValues={{
         email: '',
@@ -76,11 +77,18 @@ function RegisterPage(props) {
 
           dispatch(registerUser(dataToSubmit)).then(response => {
             if (response.payload.success) {
+              message.success('Registration Success! Please wait for the admin\'s approval.')
               props.history.push("/login");
             } else {
-              alert('Registration Error! please contact the site manager')
+              setFormErrorMessage('Registration Error! Check out your input')
             }
           })
+          .catch(err => {
+            setFormErrorMessage('Registration Error! Check out your input')
+            setTimeout(() => {
+              setFormErrorMessage("")
+            }, 3000);
+          });
 
           setSubmitting(false);
         }, 500);
