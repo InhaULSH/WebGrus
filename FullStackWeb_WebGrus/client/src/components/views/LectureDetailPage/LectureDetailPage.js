@@ -26,6 +26,18 @@ function LectureDetailPage(props) {
       })
     }, [])
 
+    const onDelete = () => {
+      axios.post('/api/lectures/deleteLecture', variable).then(response => {
+        if (response.data.success) {
+          message.warning('Lecture deleted')
+          props.history.push('/')
+        } else {
+          message.error('Lecture Deletion Error! Please contact the site manager')
+          props.history.push('/')
+        }
+      })
+    }
+
     if(LectureDetail.teacher && user.userData) {
       var buttons = (<></>)
       if (LectureDetail.teacher._id === user.userData._id) {
@@ -40,7 +52,7 @@ function LectureDetailPage(props) {
             </div>
             <div>
               <Popconfirm title="Are you sure？ This operation is irreversible."
-              icon={<Icon type="question" style={{ color: 'red' }} />}>
+               onConfirm={onDelete} icon={<Icon type="question" style={{ color: 'red' }} />}>
                 <Button style={{ minWidth: '100%', color: 'red', borderColor: 'coral' }}>
                   Delete this lecture
                 </Button>
@@ -52,7 +64,7 @@ function LectureDetailPage(props) {
         buttons = (
           <div>
             <Popconfirm title="Are you sure？ This operation is irreversible. \nIt is recommended to contact the lecturer before deleting it."
-            icon={<Icon type="question" style={{ color: 'red' }} />}>
+             onConfirm={onDelete} icon={<Icon type="question" style={{ color: 'red' }} />} >
               <Button style={{ minWidth: '100%', color: 'red', borderColor: 'coral' }}>
                 Delete this lecture
               </Button>
@@ -115,7 +127,7 @@ function LectureDetailPage(props) {
         </Row>
       )
     } else {
-      return (<div className="app" style={{ width: '65%', margin: 'auto' }}><Skeleton active /></div>)
+      return (<div className="app" style={{ width: '50%', margin: 'auto' }}><Skeleton active /></div>)
     }
 }
 

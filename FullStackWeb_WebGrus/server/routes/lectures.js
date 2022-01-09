@@ -57,5 +57,24 @@ router.post('/getLectureDetail', (req, res) => {
   })
 })
 
+router.post('/deleteLecture', (req, res) => {
+  Lecture.findOne({ "_id": req.body.lectureId }).populate('teacher').remove((err) => {
+    if (err) return res.status(400).json({ success: false, err })
+    return res.status(200).json({ success: true })
+  })
+})
+
+router.post('/editLecture', (req, res) => {
+  const lecture = new Lecture(req.body);
+  lecture.save((err) => {
+    if (err) return res.status(400).send(err)
+  })
+
+  Lecture.findOne({ "_id": req.body._id }).populate('teacher').remove((err) => {
+    if (err) return res.status(400).json({ success: false, err })
+    return res.status(200).json({ success: true })
+  })
+})
+
 
 module.exports = router;
