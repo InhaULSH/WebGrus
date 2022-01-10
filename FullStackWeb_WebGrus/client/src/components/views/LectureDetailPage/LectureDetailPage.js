@@ -106,9 +106,7 @@ function LectureDetailPage(props) {
               <h3>{LectureDetail.contactInfo}</h3>
               <br />
               <Divider />
-              <br />
               <LectureApplicationTab ThisLecture={LectureDetail} />
-              <br />
               {buttons}
             </div>
           </Col>

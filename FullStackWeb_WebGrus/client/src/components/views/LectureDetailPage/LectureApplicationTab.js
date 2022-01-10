@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Skeleton } from 'antd';
+import { Button, Skeleton, Divider } from 'antd';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom'
 
@@ -50,7 +50,7 @@ function LectureApplicationButton(props) {
 
       axios.post('/api/lectures/updateApplicationStatus', updateVariable).then(response => {
         if (response.data.success) {
-
+          props.history.push(`/lectures/`)
         } else {
           alert('Lecture Infomation Error! Please contact the site manager')
           props.history.push(`/lectures/${ThisLecture._id}`)
@@ -88,17 +88,17 @@ function LectureApplicationButton(props) {
   if (ThisLecture) {
     if (ThisLecture.applicationPeriod === true) {
       return (
-        <div>
+        <div style={{ width: '100%', justifyContent: 'center', alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
         <Divider><h2>Application</h2></Divider>
-        <br />
-        <div>
-          <Button style={{ height: 'auto' }} onClick={onApply}>
-            <h4 style={{ color: 'deepskyblue' }}>{LectureApplicants} Applicants</h4>
-            {AppliedLecture ? <h3 style={{ marginBottom: '5px' }}>Applied</h3> : <h3 style={{ marginBottom: '5px' }}>Apply</h3>}
-          </Button>
-        </div>
-        <br />
+        <h2>{LectureApplicants}  /  {ThisLecture.capacity}</h2>
+        <p />
+        <Button style={{ height: 'auto', minWidth: '275px'}} onClick={onApply}>
+          <h3 style={{ color: 'deepskyblue', fontWeight: 550, marginTop: '5px'  }}>모집 중</h3>
+          {AppliedLecture ? <h3 style={{ marginBottom: '5px', fontWeight: 550  }}>신청 완료</h3>
+           : <h3 style={{ marginBottom: '5px', fontWeight: 550  }}>신청하기</h3>}
+        </Button>
         <Divider />
+        <br />
         </div>
       )
     } else if (localStorage.getItem('userId') === ThisLecture.teacher._id) {
@@ -109,17 +109,15 @@ function LectureApplicationButton(props) {
       )
     } else {
       return (
-        <div>
+        <div style={{ width: '100%', justifyContent: 'center', alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
         <Divider><h2>Application</h2></Divider>
-        <br />
-        <div>
-          <Button style={{ height: 'auto', color: 'gray', backgroundColor: 'gray'}}>
-            <h4 style={{ color: 'gray' }}>{LectureApplicants} Applicants</h4>
-            <h3 style={{ marginBottom: '5px', color: 'gray' }}>Application closed</h3>
-          </Button>
-        </div>
-        <br />
+        <h2>{LectureApplicants}  /  {ThisLecture.capacity}</h2>
+        <p />
+        <Button style={{ height: 'auto', minWidth: '275px'}}>
+          <h3 style={{ color: 'coral', fontWeight: 550, marginTop: '5px'  }}>모집 마감</h3>
+        </Button>
         <Divider />
+        <br />
         </div>
       )
     }
