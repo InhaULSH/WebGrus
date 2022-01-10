@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { editLecture } from "../../../_actions/lecture_actions";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Form, Input, Button, Typography, message, InputNumber, Icon, Skeleton } from 'antd';
+import { Form, Input, Button, Typography, message, InputNumber, Icon, Skeleton, Checkbox } from 'antd';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import { useSelector } from 'react-redux';

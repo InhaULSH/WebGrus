@@ -77,16 +77,24 @@ router.post('/editLecture', (req, res) => {
 })
 
 router.post('/updateApplicationStatus', (req, res) => {
-  if (req.body.newApplicants === req.body.Capacity) {
-    Lecture.findOneAndReplace({ "_id": req.body.LectureId }, { applicationPeriod: false })
+  if (req.body.thisLecture.capacity === req.body.newApplicants) {
+    Lecture.findOneAndUpdate({ "_id": req.body.thisLecture._id }, { applicationPeriod: false }, (err, doc) => {
+        if (err) return res.json({ success: false, err })
+        return res.status(200).send({
+            success: true,
+            newLecture: req.body.thisLecture
+        })
+    })
   } else {
-    Lecture.findOneAndReplace({ "_id": req.body.LectureId }, { applicationPeriod: true })
+    Lecture.findOneAndUpdate({ "_id": req.body.thisLecture._id }, { applicationPeriod: true }, (err, doc) => {
+        if (err) return res.json({ success: false, err })
+        return res.status(200).send({
+            success: true,
+            newLecture: req.body.thisLecture
+        })
+    })
   }
-  Lecture.findOne({ "_id": req.body.LectureId }).save((err) => {
-    if (err) return res.status(400).json({ success: false, err })
-    return res.status(200).json({ success: true })
-  })
-})
+}) // 작동은 하는데 applicationPeriod 값이 이상하게 바뀜
 
 
 

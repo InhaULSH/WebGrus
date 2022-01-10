@@ -23,7 +23,7 @@ function LectureDetailPage(props) {
           setLectureDetail(response.data.lectureDetail)
         } else {
           message.error('Lecture Infomation Error! Please contact the site manager')
-          props.history.push('/')
+          props.history.push('/lectures')
         }
       })
     }, [])
@@ -32,10 +32,10 @@ function LectureDetailPage(props) {
       axios.post('/api/lectures/deleteLecture', variable).then(response => {
         if (response.data.success) {
           message.warning('Lecture deleted')
-          props.history.push('/')
+          props.history.push('/lectures')
         } else {
           message.error('Lecture Deletion Error! Please contact the site manager')
-          props.history.push('/')
+          props.history.push('/lectures')
         }
       })
     }
@@ -44,10 +44,11 @@ function LectureDetailPage(props) {
       var buttons = (<></>)
       if (LectureDetail.teacher._id === user.userData._id) {
         buttons = (
+          <div tyle={{ width: '100%', display: 'flex', flexDirection: 'column'  }}>
+          <Divider />
           <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr'}}>
-            <Divider />
             <div>
-              <a href={`/lectures/${lectureId}/LectureEditPage`}>
+              <a href={`/lectures/${lectureId}/edit`}>
                 <Button type="default" style={{ minWidth: '100%' }} style={{ marginRight: '20px' }}>
                   Edit this lecture
                 </Button>
@@ -61,20 +62,23 @@ function LectureDetailPage(props) {
                 </Button>
               </Popconfirm>
             </div>
-            <Divider />
+          </div>
+          <Divider />
           </div>
         )
       } else if (user.userData.isAdmin == true) {
         buttons = (
+          <div style={{ width: '100%', display: 'flex', flexDirection: 'column'  }}>
+          <Divider />
           <div>
-            <Divider />
             <Popconfirm title="Are you sure？ This operation is irreversible. \nIt is recommended to contact the lecturer before deleting it."
              onConfirm={onDelete} icon={<Icon type="question" style={{ color: 'red' }} />} >
               <Button style={{ minWidth: '100%', color: 'red', borderColor: 'coral' }}>
                 Delete this lecture
               </Button>
             </Popconfirm>
-            <Divider />
+          </div>
+          <Divider />
           </div>
         )
       }

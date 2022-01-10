@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Skeleton, Divider } from 'antd';
+import { Button, Skeleton, Divider, Tooltip } from 'antd';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom'
+import { useDispatch } from "react-redux";
+import { editLecture } from "../../../_actions/lecture_actions";
 
 function LectureApplicationButton(props) {
   const [ThisLecture, setThisLecture] = useState(props.ThisLecture)
@@ -41,30 +43,11 @@ function LectureApplicationButton(props) {
       ApplicantInfo: localStorage.getItem('userId')
     }
 
-    const StatusUpdate = () => {
-      let updateVariable ={
-        LectureId: ThisLecture._id,
-        newApplicants: LectureApplicants,
-        Capacity: ThisLecture.capacity
-      }
-
-      axios.post('/api/lectures/updateApplicationStatus', updateVariable).then(response => {
-        if (response.data.success) {
-          props.history.push(`/lectures/`)
-        } else {
-          alert('Lecture Infomation Error! Please contact the site manager')
-          props.history.push(`/lectures/${ThisLecture._id}`)
-        }
-      })
-    }
-
     if (AppliedLecture) {
       axios.post('/api/lectureApplication/cancleApply', applyVariable).then(response => {
         if (response.data.success) {
           setLectureApplicants(LectureApplicants - 1)
           setAppliedLecture(!AppliedLecture)
-
-          StatusUpdate()
         } else {
           alert('Application Error! Please contact the site manager')
           props.history.push(`/lectures/${ThisLecture._id}`)
@@ -75,8 +58,6 @@ function LectureApplicationButton(props) {
         if (response.data.success) {
           setLectureApplicants(LectureApplicants + 1)
           setAppliedLecture(!AppliedLecture)
-
-          StatusUpdate()
         } else {
           alert('Application Error! Please contact the site manager')
           props.history.push(`/lectures/${ThisLecture._id}`)
@@ -86,7 +67,13 @@ function LectureApplicationButton(props) {
   }
 
   if (ThisLecture) {
-    if (ThisLecture.applicationPeriod === true) {
+    if (localStorage.getItem('userId') === ThisLecture.teacher._id) {
+      return (
+        <div>
+          <h3>아직 미구현</h3>
+        </div>
+      )
+    } else if (ThisLecture.applicationPeriod === true) {
       return (
         <div style={{ width: '100%', justifyContent: 'center', alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
         <Divider><h2>Application</h2></Divider>
@@ -101,13 +88,7 @@ function LectureApplicationButton(props) {
         <br />
         </div>
       )
-    } else if (localStorage.getItem('userId') === ThisLecture.teacher._id) {
-      return (
-        <div>
-          <h3>아직 미구현</h3>
-        </div>
-      )
-    } else {
+    } else if (ThisLecture.applicationPeriod === false) {
       return (
         <div style={{ width: '100%', justifyContent: 'center', alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
         <Divider><h2>Application</h2></Divider>
@@ -115,6 +96,9 @@ function LectureApplicationButton(props) {
         <p />
         <Button style={{ height: 'auto', minWidth: '275px'}}>
           <h3 style={{ color: 'coral', fontWeight: 550, marginTop: '5px'  }}>모집 마감</h3>
+          {AppliedLecture
+          ? <h3 style={{ marginBottom: '5px', fontWeight: 550  }}>신청 완료</h3>
+          : <h3 style={{ marginBottom: '5px', fontWeight: 550  }}>신청 불가</h3>}
         </Button>
         <Divider />
         <br />
