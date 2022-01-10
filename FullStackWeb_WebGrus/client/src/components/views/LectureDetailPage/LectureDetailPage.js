@@ -3,6 +3,8 @@ import { FaCode } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 import { Row, Col, List, Avatar, Typography, Divider, Button, Skeleton, Popconfirm, message, Icon } from 'antd';
 import axios from 'axios';
+import LectureApplicationTab from './LectureApplicationTab.js'
+import { withRouter } from 'react-router-dom'
 
 const { Title } = Typography;
 
@@ -43,6 +45,7 @@ function LectureDetailPage(props) {
       if (LectureDetail.teacher._id === user.userData._id) {
         buttons = (
           <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr'}}>
+            <Divider />
             <div>
               <a href={`/lectures/${lectureId}/LectureEditPage`}>
                 <Button type="default" style={{ minWidth: '100%' }} style={{ marginRight: '20px' }}>
@@ -58,27 +61,22 @@ function LectureDetailPage(props) {
                 </Button>
               </Popconfirm>
             </div>
+            <Divider />
           </div>
         )
       } else if (user.userData.isAdmin == true) {
         buttons = (
           <div>
+            <Divider />
             <Popconfirm title="Are you sure？ This operation is irreversible. \nIt is recommended to contact the lecturer before deleting it."
              onConfirm={onDelete} icon={<Icon type="question" style={{ color: 'red' }} />} >
               <Button style={{ minWidth: '100%', color: 'red', borderColor: 'coral' }}>
                 Delete this lecture
               </Button>
             </Popconfirm>
+            <Divider />
           </div>
         )
-      } else {
-          buttons = (
-            <div>
-              <Button type="primary" style={{ minWidth: '100%' }}>
-                Apply for this lecture
-              </Button>
-            </div>
-          )
       }
 
       return (
@@ -109,19 +107,9 @@ function LectureDetailPage(props) {
               <br />
               <Divider />
               <br />
-              <Divider><h2>Application</h2></Divider>
+              <LectureApplicationTab ThisLecture={LectureDetail} />
               <br />
-              <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr' }}>
-                <span><h3>{LectureDetail.application} / {LectureDetail.capacity}</h3></span>
-                <span>{LectureDetail.applicationPeriod ? <h3 className="applicationPeriodMarker" style={{backgroundColor: 'green'}}>모집</h3>
-                : <h3 className="applicationPeriodMarker" style={{backgroundColor: 'coral'}}>마감</h3>}</span>
-              </div>
-              <br />
-              <Divider />
-              <br />
-              <Divider />
               {buttons}
-              <Divider />
             </div>
           </Col>
         </Row>
@@ -131,4 +119,4 @@ function LectureDetailPage(props) {
     }
 }
 
-export default LectureDetailPage
+export default withRouter(LectureDetailPage)

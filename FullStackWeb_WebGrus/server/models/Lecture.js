@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
 
 const Schema = mongoose.Schema;
 
@@ -23,10 +22,6 @@ const lectureSchema = mongoose.Schema({
   capacity: {
     type: Number
   },
-  application: {
-    type: Number,
-    default: 0
-  },
   applicationPeriod: {
     type: Boolean,
     default: true
@@ -38,7 +33,7 @@ const lectureSchema = mongoose.Schema({
 
 lectureSchema.method.autoApplicationPeriod = function() {
   var lecture = this;
-  if (lecture.capacity === lecture.application) {
+  if (lecture.capacity === lecture.applicants) {
     lecture.applicationPeriod = false;
   } else {
     lecture.applicationPeriod = true;

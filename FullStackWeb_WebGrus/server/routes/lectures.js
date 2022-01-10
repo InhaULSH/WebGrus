@@ -76,5 +76,18 @@ router.post('/editLecture', (req, res) => {
   })
 })
 
+router.post('/updateApplicationStatus', (req, res) => {
+  if (req.body.newApplicants === req.body.Capacity) {
+    Lecture.findOneAndReplace({ "_id": req.body.LectureId }, { applicationPeriod: false })
+  } else {
+    Lecture.findOneAndReplace({ "_id": req.body.LectureId }, { applicationPeriod: true })
+  }
+  Lecture.findOne({ "_id": req.body.LectureId }).save((err) => {
+    if (err) return res.status(400).json({ success: false, err })
+    return res.status(200).json({ success: true })
+  })
+})
+
+
 
 module.exports = router;

@@ -29,7 +29,7 @@ function App() {
             <Route exact path="/lectures" component={Auth(LecturePage, true)} />
             <Route exact path="/lectures/register" component={Auth(LectureUploadPage, true)} />
             <Route exact path="/lectures/:lectureId" component={Auth(LectureDetailPage, true)} />
-            <Route exact path="/lectures/:lectureId/LectureEditPage" component={Auth(LectureEditPage, true)} />
+            <Route exact path="/lectures/:lectureId/edit" component={Auth(LectureEditPage, true)} />
           </Switch>
           <Footers />
         </div>
