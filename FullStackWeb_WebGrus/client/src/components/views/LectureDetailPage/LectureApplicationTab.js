@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Skeleton, Divider, Tooltip } from 'antd';
+import { Button, Skeleton, Divider, Tooltip, message } from 'antd';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom'
 import { useDispatch } from "react-redux";
@@ -9,6 +9,23 @@ function LectureApplicationButton(props) {
   const [ThisLecture, setThisLecture] = useState(props.ThisLecture)
   const [LectureApplicants, setLectureApplicants] = useState(0)
   const [AppliedLecture, setAppliedLecture] = useState(false)
+
+  const StatusUpdate = () => {
+    let updateVariable = {
+      LectureId: ThisLecture._id,
+      Capacity: ThisLecture.capacity,
+      Applicants: LectureApplicants
+    }
+    axios.post('/api/lectures/updateApplicationStatus', updateVariable).then(response => {
+      if (response.data.success) {
+        console.log(ThisLecture)
+        console.log(response.data)
+      } else {
+        message.error('Lecture Infomation Error! Please contact the site manager')
+        window.location.reload();
+      }
+    })
+  }
 
   const applicantsVariable = {
     LectureId: ThisLecture._id
@@ -22,7 +39,7 @@ function LectureApplicationButton(props) {
       if (response.data.success) {
         setLectureApplicants(response.data.Applicants)
       } else {
-        alert('Lecture Infomation Error! Please contact the site manager')
+        message.error('Lecture Infomation Error! Please contact the site manager')
         props.history.push('/lectures')
       }
     })
@@ -31,11 +48,13 @@ function LectureApplicationButton(props) {
       if (response.data.success) {
         setAppliedLecture(response.data.isApplied)
       } else {
-        alert('Lecture Infomation Error! Please contact the site manager')
+        message.error('Lecture Infomation Error! Please contact the site manager')
         props.history.push('/lectures')
       }
     })
-  }, [])
+
+    StatusUpdate()
+  }, [LectureApplicants, AppliedLecture])
 
   const onApply = () => {
     let applyVariable ={
@@ -48,9 +67,11 @@ function LectureApplicationButton(props) {
         if (response.data.success) {
           setLectureApplicants(LectureApplicants - 1)
           setAppliedLecture(!AppliedLecture)
+
+          window.location.reload();
         } else {
-          alert('Application Error! Please contact the site manager')
-          props.history.push(`/lectures/${ThisLecture._id}`)
+          message.error('Application Error! Please contact the site manager')
+          window.location.reload();
         }
       })
     } else {
@@ -58,9 +79,11 @@ function LectureApplicationButton(props) {
         if (response.data.success) {
           setLectureApplicants(LectureApplicants + 1)
           setAppliedLecture(!AppliedLecture)
+
+          window.location.reload();
         } else {
-          alert('Application Error! Please contact the site manager')
-          props.history.push(`/lectures/${ThisLecture._id}`)
+          message.error('Application Error! Please contact the site manager')
+          window.location.reload();
         }
       })
     }

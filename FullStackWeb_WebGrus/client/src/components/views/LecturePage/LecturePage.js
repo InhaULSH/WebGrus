@@ -38,7 +38,7 @@ function LecturePage(props) {
               </a>
               <br />
               <div style={{ display: 'grid', gridTemplateColumns: '3fr 1fr' }}>
-                <Meta avatar={<Avatar src={lectures.teacher.Image} />} title={lectures.teacher.name} description="" />
+                <Meta avatar={<Avatar src={lectures.teacher.image} />} title={lectures.teacher.name} description="" />
                 {lectures.applicationPeriod ? <h3 className="applicationPeriodMarker" style={{backgroundColor: 'green'}}>모집</h3>
                  : <h3 className="applicationPeriodMarker" style={{backgroundColor: 'coral'}}>마감</h3>}
               </div>
