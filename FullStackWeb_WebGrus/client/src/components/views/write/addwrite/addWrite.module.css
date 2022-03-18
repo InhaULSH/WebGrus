@@ -1,0 +1,13 @@
+.addForm {
+	display: flex;
+	flex-direction: column;
+	width: 600px;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.textarea {
+	height: 300px;
+	resize: none;
+	overflow-y: scroll;
+}

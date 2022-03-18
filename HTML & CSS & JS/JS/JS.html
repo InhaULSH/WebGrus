@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hi</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <!-- 라이브러리인 jQuery를 CDN을 통해 불러옴 -->
+    <!-- 라이브러리를 통해 더 편리하게 코딩할 수 있음 -->
+    <script src="Color.js"></script>
+  </head>
+  <body>
+    <script> // script 태그로 HTML에서 JS 사용할 수 있음
+      document.write("Hello JavaScript!");
+      document.write(1+1234); // JS는 HTML과 달리 동적인 출력이 가능함
+    </script>
+    <input type="button" value="Button" onclick="alert('Hello?')">
+    <input type="text" onchange="alert('Changed!')">
+    <input type="text" name="Press Any Key" onkeydown="alert('Key Down.')">
+    <!-- 웹페이지에서 특정 event(클릭, 키 누름, 내용 입력)이 발생했을 때, on~ 속성의 따옴표에 들어가있는 JS 코드가 실행되도록 할 수 있음 -->
+    <input id="ModeToggle" type="button" value="Night Mode" onclick="
+      BodyOfThisPage.DisplayModeToggle(this);
+    "> <!-- this 키워드를 통해 태그 자신을 가리킬 수 있음 -->
+  </body>
+</html>

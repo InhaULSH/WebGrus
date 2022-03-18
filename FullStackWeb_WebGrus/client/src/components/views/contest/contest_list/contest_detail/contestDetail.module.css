@@ -1,0 +1,38 @@
+.container {
+	border-top: 1px rgb(224, 224, 224) solid;
+	border-bottom: 1px rgb(224, 224, 224) solid;
+}
+
+.addWrite {
+	width: 100px;
+	height: 30px;
+	border: 2px black solid;
+	background-color: rgb(224, 224, 224);
+	margin-left: 5px;
+	position: absolute;
+	right: 50px;
+	top: 50px;
+}
+
+.poster {
+	margin-top: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.poster img {
+	margin-left: 90px;
+	width: 700px;
+	border: 1px black solid;
+}
+
+.description {
+	width: 100%;
+	font-size: 25px;
+	text-align: center;
+}
+
+.hidden {
+	display: none;
+}

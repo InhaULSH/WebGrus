@@ -1,0 +1,45 @@
+.write {
+	display: flex;
+	align-items: center;
+	margin: 15px 50px;
+	padding: 10px;
+	border: 1px solid rgb(224, 224, 224);
+	border-radius: 10px;
+}
+
+.plusButton {
+	width: 35px;
+	height: 35px;
+	border: solid rgb(198, 198, 198);
+	font-size: 20px;
+	color: rgba(47, 47, 47, 0.582);
+	background-color: rgba(255, 255, 255, 0.781);
+	border-radius: 50%;
+}
+
+.description {
+	text-align: center;
+}
+
+.delete {
+	width: 60px;
+	height: 30px;
+}
+
+.hidden {
+	display: none;
+}
+
+.listItem {
+	margin-right: 80px;
+}
+
+.listItem:nth-child(3),
+.listItem:nth-child(4) {
+	text-align: center;
+	width: 200px;
+}
+
+.zeroOpacity {
+	opacity: 0;
+}

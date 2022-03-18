@@ -1,0 +1,32 @@
+.container {
+  height: 100vh;
+}
+
+.listitem {
+  display: flex;
+}
+
+.item {
+  width: 150px;
+  margin-left: 100px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+}
+
+.searchInput {
+  height: 30px;
+  border: 2px black solid;
+  border-right: none;
+}
+
+.searchButton {
+  border: 2px black solid;
+  border-left: none;
+  width: 70px;
+  height: 30px;
+  background-color: rgb(198, 203, 255);
+  opacity: 80%;
+}

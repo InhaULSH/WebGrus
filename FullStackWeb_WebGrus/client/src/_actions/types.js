@@ -1,6 +1,8 @@
-export const LOGIN_USER = 'login_user';
-export const REGISTER_USER = 'register_user';
-export const AUTH_USER = 'auth_user';
-export const LOGOUT_USER = 'logout_user';
-export const REGISTER_LECTURE = 'register_lecture';
-export const EDIT_LECTURE = 'edit_lecture';
+export const LOGIN_USER = "login_user";
+export const REGISTER_USER = "register_user";
+export const AUTH_USER = "auth_user";
+export const LOGOUT_USER = "logout_user";
+export const REGISTER_LECTURE = "register_lecture";
+export const EDIT_LECTURE = "edit_lecture";
+export const REGISTER_STUDYGROUP = "register_studygroup";
+export const EDIT_STUDYGROUP = "edit_studygroup";

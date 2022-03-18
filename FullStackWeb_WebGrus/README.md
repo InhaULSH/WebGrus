@@ -1,18 +1,8 @@
-Hello, My Friends  
-Thank you for having interest in this repository ! 
+# Webgrus
 
-To use this application, 
+강의랑 스터디 이미지 수정 완료, 공모전 업로드 문제 해결, 검색기능도 완료
+공모전, 스터디그룹, 강의 삭제 시 해당 디비에서만 삭제되고 사진 썸네일은 삭제되지 않는 문제 해결했습니다.
 
-1. make dev.js file inside config folder 
-2. put mongoDB info into dev.js file 
-3. Type  " npm install " inside the root directory  ( Download Server Dependencies ) 
-4. Type " npm install " inside the client directory ( Download Front-end Dependencies )
-
-
-If you have problem, feel free to ask me ^^ 
-
-You can watch the tutorial for this app.
-
-https://www.youtube.com/channel/UCFyXA9x8lpL3EYWeYhj4C4Q?view_as=subscriber
-
-
+22/02/07
+로그인, 로그아웃, 회원관리 완성했습니다.
+관리자 계정은 11111111, 11111111 입니다.

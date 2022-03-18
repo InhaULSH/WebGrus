@@ -1,0 +1,68 @@
+* {
+	box-sizing: border-box;
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	min-height: 500px;
+	height: 100vh;
+}
+
+.contest {
+	width: 100%;
+}
+
+.header {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.contestTitle {
+	font-size: 30px;
+}
+
+.search {
+	height: 30px;
+	position: absolute;
+	right: 50px;
+}
+
+.searchInput {
+	height: 30px;
+	border: 2px black solid;
+	border-right: none;
+}
+
+.searchButton {
+	border: 2px black solid;
+	border-left: none;
+	width: 70px;
+	height: 30px;
+	background-color: rgb(224, 224, 224);
+	opacity: 80%;
+}
+.addWriteButton {
+	height: 30px;
+	border: 2px black solid;
+	background-color: rgb(224, 224, 224);
+	margin-left: 5px;
+}
+
+.detailContainer {
+}
+
+.writingList {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	border-top: 1px rgb(224, 224, 224) solid;
+	border-bottom: 1px rgb(224, 224, 224) solid;
+}
+
+.hidden {
+	display: none;
+}

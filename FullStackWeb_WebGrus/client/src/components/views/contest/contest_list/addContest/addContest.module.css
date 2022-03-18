@@ -1,0 +1,57 @@
+.addForm {
+	display: flex;
+	flex-direction: column;
+}
+
+.label {
+	display: flex;
+	margin-bottom: 10px;
+}
+
+.title,
+.textarea,
+.poster,
+.button {
+	width: 800px;
+}
+
+.role {
+	margin: 0 10px;
+	width: 100px;
+	font-size: 30px;
+	text-align: center;
+}
+
+.title {
+	font-size: 30px;
+}
+
+.textarea {
+	font-size: 20px;
+	resize: none;
+	height: 100px;
+	overflow-y: scroll;
+}
+
+.poster {
+	width: 80px;
+	height: 40px;
+	border: black solid 1px;
+	border-radius: 10px;
+	text-align: center;
+	background-color: rgb(239, 240, 249);
+}
+
+.button {
+	width: 80px;
+	height: 30px;
+	font-size: 20px;
+	border: black solid 1px;
+	border-radius: 10px;
+	margin: 20px auto;
+	background-color: rgb(239, 240, 249);
+}
+
+.hidden {
+	display: none;
+}

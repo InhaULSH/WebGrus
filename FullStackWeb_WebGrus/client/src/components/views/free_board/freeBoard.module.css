@@ -1,0 +1,71 @@
+* {
+	box-sizing: border-box;
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	min-height: 500px;
+	height: 100vh;
+}
+
+.freeBoard {
+	width: 100%;
+}
+
+.header {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.freeBoardTitle {
+	font-size: 30px;
+}
+
+.search {
+	height: 30px;
+	position: absolute;
+	right: 50px;
+}
+
+.searchInput {
+	height: 30px;
+	border: 2px black solid;
+	border-right: none;
+}
+
+.searchButton {
+	border: 2px black solid;
+	border-left: none;
+	width: 70px;
+	height: 30px;
+	background-color: rgb(195, 195, 195);
+	opacity: 80%;
+}
+
+.writingList {
+	border-top: 1px rgb(193, 193, 193) solid;
+	border-bottom: 1px rgb(193, 193, 193) solid;
+	list-style: none;
+	padding: 0;
+}
+
+.addWrite {
+	height: 30px;
+	border: 2px black solid;
+	background-color: rgb(195, 195, 195);
+	margin-left: 5px;
+}
+
+.pages {
+	display: flex;
+	justify-content: center;
+	margin: 50px;
+}
+
+.hidden {
+	display: none;
+}

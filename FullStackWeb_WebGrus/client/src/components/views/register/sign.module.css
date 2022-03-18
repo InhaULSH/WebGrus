@@ -1,0 +1,21 @@
+.container {
+	min-height: 500px;
+	height: 100vh;
+	width: 100%;
+	display: flex;
+}
+
+.formContainer {
+	flex-basis: 80%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.form {
+	min-width: 150px;
+	width: 30%;
+	height: 30%;
+	display: flex;
+	flex-direction: column;
+}

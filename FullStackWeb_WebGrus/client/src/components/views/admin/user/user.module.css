@@ -1,0 +1,8 @@
+.listitem {
+	display: flex;
+}
+
+.item {
+	width: 150px;
+	margin-left: 100px;
+}

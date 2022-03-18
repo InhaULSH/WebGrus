@@ -1,0 +1,77 @@
+<!doctype html>
+
+<html>
+<head>
+<title>Web Programing Tutorial</title>
+<meta charset = "utf-8">
+<style>
+a { /* 태그 선택자 = 태그 이름이 일치하는 것에 적용 = 포괄적, 우선순위 낮음 */
+  color:black;
+  text-decoration: none;
+} /* 자기 자리만 사용 = 인라인 레벨 엘리먼트 */
+h1 {
+  font-size: 40px;
+  text-align: center;
+  border-bottom: 2px solid gray;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  padding-bottom: 10px;
+} /* 화면 전체 사용 = 블럭 레벨 엘리먼트 */
+h3 {
+  margin-top: 4px;
+}
+ol {
+  margin-left: 4px;
+  margin-top: 0px;
+  padding-top: 5px;
+}
+/* 클래스 선택자 = 클래스 이름이 일치하는 것에 적용 = 우선순위 보통 */
+/* ID 선택자 = ID 이름이 일치하는 것에 적용 = 특수함, 우선순위 높음 */
+#grid {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+}
+#article {
+  border-left: 2px solid gray;
+  padding-left: 20px;
+  padding-bottom: 10px;
+}
+#SubTitle {
+  margin-top: 3px;
+}
+@media(max-width:800px) { /* 미디어쿼리 = 괄호안의 기준을 경계로 레이아웃 변경 가능 */
+  #grid {
+    display: block;
+  }
+  ol {
+    border-right: none;
+    padding-top: 12px;
+  }
+  h1 {
+    padding-bottom: 12px;
+  }
+  #article {
+    border-top: 2px solid gray;
+    border-left: none;
+    padding-top: 8px;
+  }
+}
+</style>
+</head>
+
+<body>
+<h1><a href = "index.html" title = "Web Programing Tutorial"> Web Programing </a></h1>
+<div id = "grid">
+  <ol>
+    <li><a href = "HTML.html" title = "HTML Tutorial"> HTML </a></li>
+    <li><a href = "CSS.html" title = "CSS Tutorial"> CSS </a></li>
+    <li><a href = "JS.html" title = "Java Script Tutorial"> JavaScript </a></li>
+  </ol>
+  <div id = "article">
+    <h3><p style = "margin-bottom:25px;" id = "SubTitle">In this website, You can learn about Web Programing skills</p></h3>
+    <h3>Please Click Content of This Website</h3>
+  </div>
+</div>
+</body>
+
+</html>
