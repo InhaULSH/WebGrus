@@ -1,6 +1,6 @@
 # WebGrus
-It is a repository for creating a basic web application.
+웹앱 구현을 연습하기 위한 연습용 저장소입니다
 <br />
-FullStackWeb_Boilerplate is a basic part of a web app.
+FullStackWeb_Boilerplate 는 웹앱의 뼈대만 구현해놓은 폴더입니다
 <br />
-FullStackWeb_WebGrus is a real implementation of the web app I want to create.
+FullStackWeb_WebGrus 는 실제로 기초적인 웹앱을 구현해놓은 폴더입니다
